@@ -1,5 +1,5 @@
 EE_BIN = main.elf
-EE_OBJS = main.o draw_3D.o
+EE_OBJS = main.o
 EE_LIBS = -ldraw -lgraph -lmath3d -lpacket -ldma -lpad -linput
 EE_DVP = dvp-as
 EE_VCL = openvcl
@@ -20,7 +20,9 @@ endif
 .PHONY: clean
 all: $(EE_BIN)
 	$(EE_STRIP) --strip-all $(EE_BIN)
+ifdef WIN_DIR
 	cp $(EE_BIN) $(WIN_DIR)/$(EE_BIN)
+endif
 
 clean:
 	rm *.o
